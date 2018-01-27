@@ -20,7 +20,7 @@ class AbbyyClient
     public function __construct($appName, $password)
     {
         $this->api = new Client([
-            'base_uri' => 'http://cloud.ocrsdk.com/',
+            'base_uri' => 'https://cloud.ocrsdk.com/',
             'auth' => [$appName, $password]
         ]);
     }
@@ -28,10 +28,11 @@ class AbbyyClient
     /**
      * @param string $inputFilePath
      * @return string
+     * @throws AbbyyException
      */
-    public function performOcr($inputFilePath, $language = 'english')
+    public function performOcr($inputFilePath, $language = 'english', $imageSource = 'scanner', $profile = 'barcodeRecognition', $exportFormat = 'xml')
     {
-        $task = $this->submitImage($inputFilePath, $language);
+        $task = $this->submitImage($inputFilePath, $language, $imageSource, $profile, $exportFormat);
 
         while (true) {
             sleep($task->getEstimatedProcessingTime());
@@ -53,16 +54,19 @@ class AbbyyClient
     /**
      * @param string $inputFilePath
      * @param string $language
+     * @param $imageSource
+     * @param $profile
+     * @param $exportFormat
      * @return AbbyyTask
      * @throws AbbyyException
      */
-    public function submitImage($inputFilePath, $language = 'english')
+    public function submitImage($inputFilePath, $language = 'english', $imageSource, $profile, $exportFormat)
     {
         $options = [
             'query' => [
-                'profile' => 'textExtraction',
-                'imageSource' => 'photo',
-                'exportFormat' => 'txt',
+                'profile' => $profile,
+                'imageSource' => $imageSource,
+                'exportFormat' => $exportFormat,
                 'language' => $language
             ],
             'body' => fopen($inputFilePath, 'r')
