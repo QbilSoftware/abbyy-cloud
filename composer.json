@@ -1,5 +1,5 @@
 {
-    "name": "QbilSoftware/abbyy-cloud",
+    "name": "qbil-software/abbyy-cloud",
     "description": "Interface for communication with ABBYY cloud OCR",
     "license": "WTFPL",
     "authors": [
