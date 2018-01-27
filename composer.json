@@ -1,15 +1,19 @@
 {
-    "name": "shonezlo/abbyy-cloud",
+    "name": "QbilSoftware/abbyy-cloud",
     "description": "Interface for communication with ABBYY cloud OCR",
     "license": "WTFPL",
     "authors": [
         {
             "name": "Nenad Mitic",
             "email": "shonezlo@gmail.com"
+        },
+        {
+            "name": "Hans Allis",
+            "email": "hans@qbil.nl"
         }
     ],
     "require": {
-        "guzzlehttp/guzzle": "6.0.2"
+        "guzzlehttp/guzzle": "~6.0"
     },
     "require-dev": {
         "phpunit/phpunit": "4.8.6"
